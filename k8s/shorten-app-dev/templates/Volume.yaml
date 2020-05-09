@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: app-public
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+    
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: db-storage
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+        
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-app
+spec:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 1Gi
+  hostPath:
+    path: "/mnt/app"
