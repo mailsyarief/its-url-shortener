@@ -1,0 +1,39 @@
+def DockerImage
+node{  
+    stage('Checkout'){  
+        checkout([  
+            $class: 'GitSCM',   
+            branches: 
+            [[
+                name: '*/development'
+            ]],   
+            doGenerateSubmoduleConfigurations: false,   
+            extensions: [],   
+            submoduleCfg: [],   
+            userRemoteConfigs: 
+                [[
+                    credentialsId:'56759219-2484-4732-b35e-2cd901ae20e2', 
+                    url: 'https://github.com/mailsyarief/its-url-shortener'
+                ]]
+            ])  
+    }  
+    stage('Build & Push Image'){
+		docker.withRegistry("docker.io/mailsyarief", '56759219-2484-4732-b35e-2cd901ae20e2') {
+            DockerImage = docker.build('mailsyarief/its-url-shortener:development')
+            DockerImage.push()
+		}
+    }
+    stage('Deploy App'){  
+        withKubeConfig(  
+            credentialsId: '1f5d0fb9-0918-4cfb-8246-fe08bf683df3',   
+            serverUrl: 'https://k8s.its.ac.id:20443/k8s/clusters/c-dwlkj'){  
+            sh 'helm repo add chartmuseum http://10.199.16.58:30661'
+            sh 'helm repo update'
+            try{
+                sh 'helm upgrade --set timestamp=${BUILD_VERSION} anebantu-prod chartmuseum/anebantu-prod'
+            }catch (Exception e){
+                sh 'helm install anebantu-prod chartmuseum-anebantu/anebantu-prod'
+            }
+        } 
+    }    
+}  
