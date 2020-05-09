@@ -30,7 +30,6 @@ spec:
                 subPath: .env
               - name: public
                 mountPath: /var/www/html/public/storage
-                subPath: storage
             imagePullSecrets:
             - name: dockerhub
             restartPolicy: Always                
