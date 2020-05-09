@@ -2,7 +2,7 @@ FROM php:7.2-apache
 
 WORKDIR /var/www/html
 
-COPY /application /var/www/html
+COPY /code /var/www/html
 
 RUN apt-get update && \
     apt-get install -y \
@@ -23,7 +23,7 @@ RUN chown -R www-data:www-data /var/www
 RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www
 
-COPY /application/docker/apache /etc/apache2/sites-available
+COPY /code/docker/apache /etc/apache2/sites-available
 
 RUN composer install
 
