@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: pma
+    name: shorten-pma
 spec:
     selector:
         matchLabels:
-            app: pma
+            app: shorten-pma
     template:
         metadata:
             labels:
-                app: pma
+                app: shorten-pma
         spec:
             containers:
             - name: c-pma
@@ -18,4 +18,4 @@ spec:
               - containerPort: 80
               env:
               - name: PMA_HOST
-                value: db
+                value: shorten-db
