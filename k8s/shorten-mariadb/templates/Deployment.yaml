@@ -12,16 +12,15 @@ spec:
                 app: db
         spec:
             volumes:
-            - name: db-storage
+            - name: storage
               persistentVolumeClaim:
-                claimName: db-storage
+                claimName: pvc-db
             containers:
             - name: c-mariadb
               image: mariadb
               volumeMounts:
-              - name: db-storage
+              - name: storage
                 mountPath: /var/lib/mysql
-                subPath: mysql
               ports:
               - containerPort: 3306
               env:
