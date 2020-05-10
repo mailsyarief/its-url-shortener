@@ -1,22 +1,8 @@
-FROM php:7.2-apache
+FROM mailsyarief/its-url-shortener:development
 
 WORKDIR /var/www/html
 
 COPY /code /var/www/html
-
-RUN apt-get update && \
-    apt-get install -y \
-    git \
-    zip \
-    nano \
-    curl
-
-RUN docker-php-ext-install mbstring
-RUN docker-php-ext-install pdo_mysql
-
-RUN curl -sS https://getcomposer.org/installer | php
-RUN mv composer.phar /usr/local/bin/composer
-RUN chmod +x /usr/local/bin/composer
 
 RUN chown -R www-data:www-data /var/www
 
