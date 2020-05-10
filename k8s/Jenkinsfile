@@ -17,12 +17,11 @@ node{
                 ]]
             ])  
     }  
-    stage('Build & Push Image'){
-		docker.withRegistry("docker.io/mailsyarief", '56759219-2484-4732-b35e-2cd901ae20e2') {
-            DockerImage = docker.build('mailsyarief/its-url-shortener:development')
-            DockerImage.push()
-		}
-    }
+    stage('Build & Push to DockerHub'){  
+        DockerImage = docker.build('mailsyarief/its-url-shortener:development','.')  
+        sh 'docker login --username mailsyarief -p 02fdd2f6-078c-4ce5-915d-0529733d5a7d'  
+        DockerImage.push()  
+    }    
     stage('Deploy App'){  
         withKubeConfig(  
             credentialsId: '1f5d0fb9-0918-4cfb-8246-fe08bf683df3',   
@@ -30,10 +29,10 @@ node{
             sh 'helm repo add chartmuseum http://10.199.16.58:30661'
             sh 'helm repo update'
             try{
-                sh 'helm upgrade --set timestamp=${BUILD_VERSION} anebantu-prod chartmuseum/anebantu-prod'
+                sh 'helm upgrade --set timestamp=${BUILD_VERSION} shorten-app chartmuseum/shorten-app'
             }catch (Exception e){
-                sh 'helm install anebantu-prod chartmuseum-anebantu/anebantu-prod'
+                sh 'helm install shorten-app chartmuseum-anebantu/shorten-app'
             }
         } 
     }    
-}  
+}
