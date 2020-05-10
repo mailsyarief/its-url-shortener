@@ -25,7 +25,7 @@ RUN useradd -u 1000 -ms /bin/bash -g www www
 
 COPY /code/docker/apache /etc/apache2/sites-available
 
-RUN composer install
+RUN composer install --no-cache
 
 RUN chown -R www-data:www-data /var/www/html
 RUN a2enmod rewrite
