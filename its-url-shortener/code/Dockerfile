@@ -21,7 +21,7 @@ RUN chown -R www-data:www-data /var/www
 RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www
 
-COPY /docker/apache /etc/apache2/sites-available
+COPY /000-default.conf /etc/apache2/sites-available/000-default.conf
 
 RUN chown -R www-data:www-data /var/www/html
 RUN a2enmod rewrite

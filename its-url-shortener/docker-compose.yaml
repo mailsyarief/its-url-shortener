@@ -7,8 +7,6 @@ services:
       image: mariadb:latest
       ports:
         - "3306:3306"
-      volumes: 
-        - ./mysql:/var/lib/mysql
       environment:
         - MYSQL_DATABASE=laravel
         - MYSQL_ROOT_PASSWORD=root
