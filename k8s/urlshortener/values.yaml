@@ -1,11 +1,10 @@
 image:
-  repository: mailsyarief/its-url-shortener:development
+  name: mailsyarief/its-url-shortener:development
   version: v1
-
 timestamp: "000000"
 
 application:
-  name: shorten-app
+  name: its-shorterner-url
   buildNumber: v2
   buildNumberBefore: v1
   initialDelaySeconds: 45
