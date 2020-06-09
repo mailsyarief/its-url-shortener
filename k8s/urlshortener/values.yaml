@@ -4,7 +4,7 @@ image:
 timestamp: "000000"
 
 application:
-  name: its-shorterner-url
+  name: shorten-app
   buildNumber: v2
   buildNumberBefore: v1
   initialDelaySeconds: 45
