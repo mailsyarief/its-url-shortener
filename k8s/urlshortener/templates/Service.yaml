@@ -23,7 +23,7 @@ metadata:
 spec:
     type: NodePort
     ports:
-    - nodePort: {{30010 + .Values.application.buildNumber}}
+    - nodePort: 3000{{.Values.application.buildNumber}}
       port: 80
       protocol: TCP
       targetPort: 80
