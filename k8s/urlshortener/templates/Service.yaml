@@ -12,21 +12,21 @@ spec:
     app: {{.Values.application.name}}
     version: {{.Values.application.buildNumber}}
 
-# ---
+---
 
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: {{.Values.application.name}}-service-{{.Values.application.buildNumber}}
-#   labels:
-#     app: {{.Values.application.name}}
-# spec:
-#     type: NodePort
-#     ports:
-#     - nodePort: 3000{{.Values.application.buildNumber}}
-#       port: 80
-#       protocol: TCP
-#       targetPort: 80
-#   selector:
-#     app: {{.Values.application.name}}
-#     version: {{.Values.application.buildNumber}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{.Values.application.name}}-nodeport-service-{{.Values.application.buildNumber}}
+  labels:
+    app: {{.Values.application.name}}
+spec:
+    type: NodePort
+    ports:
+    - nodePort: 3000{{.Values.application.buildNumber}}
+      port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: {{.Values.application.name}}
+    version: {{.Values.application.buildNumber}}
