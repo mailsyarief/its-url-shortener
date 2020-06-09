@@ -1,8 +1,0 @@
-# Default values for shorten.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-image:
-  repository: mailsyarief/its-url-shortener
-  tag: development
-
-timestamp: "1"

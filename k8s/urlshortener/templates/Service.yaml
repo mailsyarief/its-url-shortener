@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{.Values.application.name}}-app-service-{{.Values.application.buildNumber}}
+  labels:
+    app: {{.Values.application.name}}-app
+spec:
+  ports:
+  - name: http
+    port: 80
+  selector:
+    app: {{.Values.application.name}}-app
+    version: {{.Values.application.buildNumber}}

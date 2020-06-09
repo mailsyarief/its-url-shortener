@@ -1,0 +1,5 @@
+application:
+  name: shorten-app
+  buildNumber: v2
+  buildNumberBefore: v1
+  initialDelaySeconds: 45

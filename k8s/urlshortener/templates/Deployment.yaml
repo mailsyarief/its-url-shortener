@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: {{.Values.application.name}}-{{.Values.application.buildNumber}}
+    labels:
+        app: {{.Values.application.name}}
+spec:
+    selector:
+        matchLabels:
+            app: {{.Values.application.name}}
+            version: {{.Values.application.buildNumber}}
+    template:
+        metadata:
+            labels:
+                app: {{.Values.application.name}}
+                version: {{.Values.application.buildNumber}}
+        spec:
+            containers:
+            - name: c-shorten
+              image: {{.Values.image.name}}
+              ports:
+              - containerPort: 80
+              volumeMounts:
+              - name: config
+                mountPath: /var/www/mysite/.env
+                subPath: .env
+              - name: public
+                mountPath: /var/www/mysite/public/storage
+                subPath: storage
+              readinessProbe:
+                httpGet:
+                  path: /
+                  port: 80
+                initialDelaySeconds: {{.Values.application.initialDelaySeconds}}
+                periodSeconds: 10
+                timeoutSeconds: 3
+                successThreshold: 1
+                failureThreshold: 3
+            imagePullSecrets:
+            - name: anebantu-registry
+            volumes:
+            - name: public
+              persistentVolumeClaim:
+                claimName: {{.Values.application.name}}-pvc
+            - name: config
+              configMap:
+                name: {{.Values.application.name}}-configmap
+                items:
+                - key: config
+                  path: .env

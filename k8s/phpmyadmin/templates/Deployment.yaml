@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: shorten-pma
+spec:
+    selector:
+        matchLabels:
+            app: shorten-pma
+    template:
+        metadata:
+            labels:
+                app: shorten-pma
+        spec:
+            containers:
+            - name: c-pma
+              image: phpmyadmin/phpmyadmin
+              ports:
+              - containerPort: 80
+              env:
+              - name: PMA_HOST
+                value: {{.Values.env.host}}
