@@ -5,8 +5,8 @@ timestamp: "000000"
 
 application:
   name: shorten-app
-  buildNumber: v2
-  buildNumberBefore: v1
+  buildNumber: 2
+  buildNumberBefore: 1
   initialDelaySeconds: 45
 
 uri:
