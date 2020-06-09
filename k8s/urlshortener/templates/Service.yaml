@@ -11,8 +11,6 @@
 #   selector:
 #     app: {{.Values.application.name}}
 #     version: {{.Values.application.buildNumber}}
-    
- ---
 
 apiVersion: v1
 kind: Service
