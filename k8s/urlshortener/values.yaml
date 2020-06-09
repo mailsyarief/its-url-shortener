@@ -1,15 +1,13 @@
-image:
-  name: mailsyarief/its-url-shortener:development
-  version: v1
-timestamp: "000000"
-
-application:
-  name: shorten-app
-  buildNumber: 2
-  buildNumberBefore: 1
-  initialDelaySeconds: 45
-
-uri:
-  appprefix: /
-
-host: "*"
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{.Values.application.name}}-service-{{.Values.application.buildNumber}}
+  labels:
+    app: {{.Values.application.name}}
+spec:
+  ports:
+  - name: http
+    port: 80
+  selector:
+    app: {{.Values.application.name}}
+    version: {{.Values.application.buildNumber}}
