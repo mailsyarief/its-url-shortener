@@ -6,4 +6,4 @@ COPY /code /var/www/mysite
 RUN ls -a -l
 RUN chown -R www-data:www-data /var/www/mysite/storage
 
-RUN composer update
+# RUN composer update
