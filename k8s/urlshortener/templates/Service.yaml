@@ -11,3 +11,20 @@ spec:
   selector:
     app: {{.Values.application.name}}
     version: {{.Values.application.buildNumber}}
+
+--
+
+apiVersion: v1
+kind: Service
+metadata:
+    name: {{.Values.application.name}}-serviceNodePort-{{.Values.application.buildNumber}}
+spec:
+    type: NodePort
+    ports:
+    - nodePort: 30003
+      port: 80
+      protocol: TCP
+      targetPort: 80
+    selector:
+      app: {{.Values.application.name}}
+      version: {{.Values.application.buildNumber}}
