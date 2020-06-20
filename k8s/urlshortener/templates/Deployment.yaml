@@ -14,6 +14,9 @@ spec:
             labels:
                 app: {{.Values.application.name}}
                 version: {{.Values.application.buildNumber}}
+            annotations:
+                timestamp: "{{ .Values.timestamp }}"
+        
         spec:
             containers:
             - name: c-shorten
