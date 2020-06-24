@@ -9,7 +9,7 @@
                     <div class="row"> 
                         <div class="col-md-12"> 
                             <div class="slider-content_wrap"> 
-                                <h1 style="color:white;">ITS Shortlink</h1> 
+                                <h1 style="color:white;">ITS Shortlink Edited</h1> 
                                 <h5 style="color:white;">Shortlink by DPTSI</h5>
                             </div> 
                         </div> 
@@ -21,7 +21,7 @@
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <input type="text" placeholder="Original Link" name="link_asli" class="btn-group1">
                                         <input type="text" placeholder="Custom Link" name="link_pendek" class="btn-group2">
-                                        <button id="button_form_action" style="background-color:#ffc413;" class="btn-form">Shorten<i class="pe-7s-angle-right"></i></button>
+                                        <button id="button_form_action" style="background-color:#ffc413;" class="btn-form">Shorten Now!<i class="pe-7s-angle-right"></i></button>
                                     </div>
                                 </div>
                                 <div id="loader_action" align="center">
